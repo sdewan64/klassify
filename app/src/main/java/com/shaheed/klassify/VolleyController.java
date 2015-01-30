@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
 /**
@@ -15,38 +16,47 @@ import com.android.volley.toolbox.Volley;
 
 public class VolleyController extends Application {
 
-    private String mTag = "Default Tag";
+    private String Tag = "Default Tag";
 
-    private RequestQueue mRequestQueue;
+    private RequestQueue requestQueue;
+    private ImageLoader imageLoader;
 
-    private static VolleyController mInstance;
+    private static VolleyController instance;
 
     @Override
     public void onCreate(){
         super.onCreate();
-        mInstance = this;
+        instance = this;
     }
 
     public static synchronized VolleyController getInstance(){
-        return mInstance;
+        return instance;
     }
 
     public RequestQueue getRequestQueue(){
-        if(mRequestQueue==null){
-            mRequestQueue = Volley.newRequestQueue(getApplicationContext());
+        if(requestQueue ==null){
+            requestQueue = Volley.newRequestQueue(getApplicationContext());
         }
-        return mRequestQueue;
+        return requestQueue;
     }
 
     public <T> void addNewToRequestQueue(Request<T> request, String tag){
-        this.mTag = tag;
-        request.setTag(mTag);
+        this.Tag = tag;
+        request.setTag(Tag);
         getRequestQueue().add(request);
     }
 
+    public ImageLoader getImageLoader(){
+        getRequestQueue();
+        if(imageLoader == null){
+            imageLoader = new ImageLoader(this.requestQueue, new VolleyBitmapCacher());
+        }
+        return this.imageLoader;
+    }
+
     public void cancelAllRequest(Object tag){
-        if(mRequestQueue != null){
-            mRequestQueue.cancelAll(tag);
+        if(requestQueue != null){
+            requestQueue.cancelAll(tag);
         }
     }
 

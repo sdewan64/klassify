@@ -1,5 +1,6 @@
 package com.shaheed.klassify;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
@@ -7,16 +8,30 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.shaheed.klassify.fragments.LoginFragment;
 import com.shaheed.klassify.fragments.RegistrationFragment;
+import com.shaheed.klassify.models.Ads;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 /**
  * Created by Shaheed on 1/20/2015.
@@ -27,20 +42,28 @@ import com.shaheed.klassify.fragments.RegistrationFragment;
 
 public class StartingActivity extends ActionBarActivity {
 
+    private static final String VOLLEYTAG = "Menu";
+
     private final String MENU_LOGIN = "Login";
     private final String MENU_SIGNUP = "Sign Up";
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
 
-    private ListView mDrawerList;
-
     private String[] mMenu  = new String[]{MENU_LOGIN, MENU_SIGNUP};
     private ArrayAdapter adapter;
 
     private SessionManager sessionManager;
 
+    private ListView mDrawerList;
     private TextView textView;
+    private ImageButton starting_postNewAdView;
+    private HorizontalScrollView starting_horizontalScrollView;
+    private SdHorizontalListView sdHorizontalListView;
+
+    private HashMap<Integer,Object> listMap;
+
+    private View.OnClickListener onClickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,14 +74,84 @@ public class StartingActivity extends ActionBarActivity {
 
         if(sessionManager.userLoggedIn()){
             textView = (TextView) findViewById(R.id.starting_textview_helloText);
-            textView.setText("Hello "+ sessionManager.getUserName()+"!");
+            textView.setText("Hello "+ sessionManager.getUserName());
         }
 
         initiateMenuDrawer();
+        findViewsById();
+        implementButtons();
+
+        initiateAddScroller();
 
         if(!Constants.isConnected(this)){
             Constants.makeToast(this,getString(R.string.network_not_connected),true);
         }
+
+    }
+
+    private void initiateAddScroller() {
+
+        if(!Constants.isConnected(this)){
+            return;
+        }
+
+        listMap = new HashMap<>();
+        onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        };
+        sdHorizontalListView = new SdHorizontalListView(getApplicationContext(), starting_horizontalScrollView, listMap);
+
+        JsonArrayRequest editorsChoiceAdRequest = new JsonArrayRequest(Constants.URL_EDITORS_CHOICE, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray adArray) {
+                for(int i=0;i<adArray.length();i++){
+                    try{
+                        JSONObject adObject = adArray.getJSONObject(i);
+                        Ads ad = new Ads(adObject.getString("ad_id"),adObject.getString("ad_owner"),adObject.getString("ad_type"),adObject.getString("ad_category"),adObject.getString("ad_sub_category"),adObject.getString("ad_thumb_image"),adObject.getString("ad_price"));
+                    }catch (JSONException e){
+                        Log.e("JSONERROR", e.getMessage());
+                    }
+
+                    //sdHorizontalListView.addNewImageTextItem();
+
+                }
+            }
+        }, new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("VolleyError", "Error: " + error.getMessage());
+            }
+        });
+
+        VolleyController.getInstance().addNewToRequestQueue(editorsChoiceAdRequest,VOLLEYTAG);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i("VOLLEY", "Volley cancel all called");
+        VolleyController.getInstance().cancelAllRequest(VOLLEYTAG);
+    }
+
+    private void implementButtons() {
+        starting_postNewAdView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StartingActivity.this, NewAdActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void findViewsById() {
+        starting_postNewAdView = (ImageButton) findViewById(R.id.starting_imagebutton_postad);
+
+        starting_horizontalScrollView = (HorizontalScrollView) findViewById(R.id.starting_horizontalscrollview);
 
     }
 

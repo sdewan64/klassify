@@ -15,6 +15,8 @@ import com.shaheed.klassify.adapters.TabsPagerAdapter;
 
 public class AccountActivity extends ActionBarActivity implements android.support.v7.app.ActionBar.TabListener{
 
+
+
     private ViewPager viewPager;
     private TabsPagerAdapter mAdapter;
     private String[] tabs = { "My Ads", "Wish List", "Edit Information" };
@@ -28,9 +30,12 @@ public class AccountActivity extends ActionBarActivity implements android.suppor
 
         sessionManager = new SessionManager(getApplicationContext());
 
+        if(sessionManager.checkLogin()) {
+            finish();
+        }
+
         if(!Constants.isConnected(this)){
             Constants.makeToast(this,getString(R.string.network_not_connected),true);
-            return;
         }
 
         initiateTabsView();

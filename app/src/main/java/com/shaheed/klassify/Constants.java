@@ -22,10 +22,13 @@ import android.widget.Toast;
 public class Constants {
 
     public static final String URL_BASE = "http://www.mocky.io/v2/";
-    public static String URL_LOGIN = URL_BASE + "54cb628596d6b28408431f36";
+    public static String URL_LOGIN = URL_BASE + "54cb9aed96d6b2c50e431f6b";
     public static String URL_REGISTRATION = URL_BASE + "54cb6b8396d6b26f09431f43";
+    public static String URL_UPDATE = URL_BASE + "54cb6b8396d6b26f09431f43";
+    public static String URL_FETCH = URL_BASE + "54cb86d896d6b2850c431f5d";
 
     public static String userId = "";
+    public static String userName = "";
 
     public static void makeToast(Activity activity,String message, boolean isError){
         if(!isError){

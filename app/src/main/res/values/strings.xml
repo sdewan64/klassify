@@ -32,4 +32,11 @@
     <string name="menu_social_signup">Signup with Social Network</string>
     <string name="facebook_app_id">637137979724925</string>
 
+    <string name="primary_color_string">#FFFFFF</string>
+    <string name="secondary_color_string">#6E68AF</string>
+
+    <string name="menu_hello">Hello Guest !</string>
+
+    <string name="network_not_connected">You are not connected to internet!</string>
+
 </resources>

@@ -21,8 +21,10 @@ public class SessionManager {
     private static final String PREFERENCE_NAME = "Klassify";
     private static final String IS_USER_LOGGEDIN = "IsUserLoggedIn";
     private static final String KEY_USER_ID = "userid";
+    private static final String KEY_USER_NAME = "username";
 
     public static final String NO_ID_AVAILABLE = "no id available";
+    public static final String NO_NAME_AVAILABLE = "Guest";
 
     public SessionManager(Context context){
         this.context = context;
@@ -30,19 +32,20 @@ public class SessionManager {
         editor = sharedPreferences.edit();
     }
 
-    public void createNewLoginSession(String id){
+    public void createNewLoginSession(String id,String name){
         editor.putBoolean(IS_USER_LOGGEDIN, true);
         editor.putString(KEY_USER_ID, id);
+        editor.putString(KEY_USER_NAME, name);
 
         editor.commit();
     }
 
-    public boolean isUserLoggedIn(){
+    public boolean userLoggedIn(){
         return sharedPreferences.getBoolean(IS_USER_LOGGEDIN, false);
     }
 
     public boolean checkLogin(){
-        if(!this.isUserLoggedIn()){
+        if(!this.userLoggedIn()){
             Intent in = new Intent(context, StartingActivity.class);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -56,9 +59,16 @@ public class SessionManager {
         return sharedPreferences.getString(KEY_USER_ID, NO_ID_AVAILABLE);
     }
 
+    public String getUserName(){
+        return sharedPreferences.getString(KEY_USER_NAME, NO_NAME_AVAILABLE);
+    }
+
     public void logoutUser(){
         editor.clear();
         editor.commit();
+
+        Constants.userId = "";
+        Constants.userName = "";
 
         Intent in = new Intent(context, StartingActivity.class);
         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

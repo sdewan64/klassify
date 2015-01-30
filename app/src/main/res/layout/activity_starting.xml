@@ -3,14 +3,60 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FEFCD7"
+    android:background="#faff4b"
     >
 
     <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FEFCD7" />
+        android:background="#faff4b" >
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/menu_hello"
+                android:id="@+id/starting_textview_helloText"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:textColor="#6E68AF"/>
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="110dp"
+                android:id="@+id/starting_imageview_postad"
+                android:layout_gravity="center"
+                android:background="@drawable/post_ad"
+                android:layout_marginBottom="50dp"
+                android:layout_marginTop="20dp"/>
+
+
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_horizontal|top">
+            <ImageView
+                android:layout_width="145dp"
+                android:layout_height="130dp"
+                android:id="@+id/imageView"
+                android:layout_gravity="center_horizontal|top"
+                android:background="@drawable/klassify_logo"/>
+            </LinearLayout>
+
+
+    </FrameLayout>
+
 
     <ListView
         android:id="@+id/drawer_list"
@@ -21,7 +67,7 @@
         android:listSelector="@android:color/holo_orange_dark"
         android:divider="@android:color/white"
         android:dividerHeight="0dp"
-        android:background="#33a1c9"
+        android:background="@android:color/holo_green_light"
         />
 
 

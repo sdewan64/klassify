@@ -172,7 +172,7 @@ public class LoginFragment extends Fragment{
             //user found making session and redirecting to account menu
 
             SessionManager sessionManager = new SessionManager(getActivity().getApplicationContext());
-            sessionManager.createNewLoginSession(Constants.userId);
+            sessionManager.createNewLoginSession(Constants.userId,Constants.userName);
 
             Constants.makeToast(currentFragment.getActivity(),"Login Successful.\nRedirecting to Account Page...",false);
             Intent in = new Intent(currentFragment.getActivity(), AccountActivity.class);

@@ -1,6 +1,5 @@
 package com.shaheed.klassify;
 
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
@@ -13,9 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.shaheed.klassify.fragments.LoginFragment;
 import com.shaheed.klassify.fragments.RegistrationFragment;
@@ -40,10 +38,21 @@ public class StartingActivity extends ActionBarActivity {
     private String[] mMenu  = new String[]{MENU_LOGIN, MENU_SIGNUP};
     private ArrayAdapter adapter;
 
+    private SessionManager sessionManager;
+
+    private TextView textView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_starting);
+         setContentView(R.layout.activity_starting);
+
+        sessionManager = new SessionManager(getApplicationContext());
+
+        if(sessionManager.userLoggedIn()){
+            textView = (TextView) findViewById(R.id.starting_textview_helloText);
+            textView.setText("Hello "+ sessionManager.getUserName()+"!");
+        }
 
         initiateMenuDrawer();
 

@@ -1,5 +1,7 @@
 package com.shaheed.klassify;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.FragmentTransaction;
@@ -28,6 +30,7 @@ public class AccountActivity extends ActionBarActivity implements android.suppor
 
     private void initiateTabsView() {
         final ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#6E68AF")));
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         viewPager = (ViewPager) findViewById(R.id.pager);
         mAdapter = new TabsPagerAdapter(getSupportFragmentManager());

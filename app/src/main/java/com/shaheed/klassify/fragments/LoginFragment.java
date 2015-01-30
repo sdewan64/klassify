@@ -49,8 +49,7 @@ public class LoginFragment extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        String fragmentId = getArguments().getString("FragmentId");
-        View view = inflater.inflate(Integer.parseInt(fragmentId), container, false);
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
         findViewsById(view);
         addClickListeners();
         progressDialog = new ProgressDialog(getActivity());

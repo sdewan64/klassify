@@ -1,9 +1,23 @@
 package com.shaheed.klassify;
 
+import android.content.res.Configuration;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ListView;
+
+import com.shaheed.klassify.fragments.LoginFragment;
+import com.shaheed.klassify.fragments.RegistrationFragment;
 
 /**
  * Created by Shaheed on 1/20/2015.
@@ -14,29 +28,91 @@ import android.view.MenuItem;
 
 public class StartingActivity extends ActionBarActivity {
 
+    private final String MENU_LOGIN = "Login";
+    private final String MENU_SIGNUP = "Sign Up";
+
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mDrawerToggle;
+
+    private ListView mDrawerList;
+
+    private String[] mMenu  = new String[]{MENU_LOGIN, MENU_SIGNUP};
+    private ArrayAdapter adapter;
+
+    private SessionManager sessionManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_starting);
+
+        initiateMenuDrawer();
+
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState){
+        super.onPostCreate(savedInstanceState);
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    private void initiateMenuDrawer() {
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.ic_drawer, R.string.drawer_open,R.string.drawer_close){
+            public void onDrawerClosed(View view){
+                super.onDrawerClosed(view);
+            }
+            public void onDrawerOpened(View drawerView){
+                super.onDrawerOpened(drawerView);
+            }
+
+        };
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        mDrawerList = (ListView) findViewById(R.id.drawer_list);
+
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_single_choice, mMenu);
+        mDrawerList.setAdapter(adapter);
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mDrawerLayout.closeDrawers();
+                Fragment menuFragment = null;
+
+                if(mMenu[position].equals(MENU_LOGIN)){
+                    menuFragment = new LoginFragment();
+                }else if(mMenu[position].equals(MENU_SIGNUP)){
+                    menuFragment = new RegistrationFragment();
+                }
+
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.content_frame, menuFragment).commit();
+
+            }
+        });
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_starting, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if(mDrawerToggle.onOptionsItemSelected(item)){
             return true;
         }
 

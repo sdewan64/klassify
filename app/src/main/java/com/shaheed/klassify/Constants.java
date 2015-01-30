@@ -16,9 +16,9 @@ import android.widget.Toast;
 
 public class Constants {
 
-    public static final String URL_BASE = "http://tomcat-sdewan64.rhcloud.com/";
+    public static final String URL_BASE = "http://www.mocky.io/v2/";
+    public static String URL_LOGIN = URL_BASE + "54cb628596d6b28408431f36";
     public static String URL_REGISTRATION = URL_BASE + "RegistrationServlet";
-    public static String URL_LOGIN = URL_BASE + "LoginServlet";
 
     public static String userId = "";
 

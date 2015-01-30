@@ -93,6 +93,10 @@ public class RegistrationFragment extends Fragment {
     }
 
     private void registration_signUpButtonClicked(){
+        if(!Constants.isConnected(getActivity())){
+            Constants.makeToast(getActivity(),getString(R.string.network_not_connected),true);
+            return;
+        }
         if(registration_fullName.getText().toString().equals("") || registration_password.getText().toString().equals("") || registration_confirmPassword.getText().toString().equals("") || registration_email.getText().toString().equals("") || registration_phone.getText().toString().equals("")){
             Constants.makeToast(this.getActivity(), "All fields are required!", true);
         }else{

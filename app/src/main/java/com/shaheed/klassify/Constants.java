@@ -1,8 +1,13 @@
 package com.shaheed.klassify;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Build;
 import android.view.Gravity;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,7 +23,7 @@ public class Constants {
 
     public static final String URL_BASE = "http://www.mocky.io/v2/";
     public static String URL_LOGIN = URL_BASE + "54cb628596d6b28408431f36";
-    public static String URL_REGISTRATION = URL_BASE + "RegistrationServlet";
+    public static String URL_REGISTRATION = URL_BASE + "54cb6b8396d6b26f09431f43";
 
     public static String userId = "";
 
@@ -26,13 +31,16 @@ public class Constants {
         if(!isError){
             Toast toast = Toast.makeText(activity,message,Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.BOTTOM,0,20);
+            toast.getView().setBackgroundColor(Color.parseColor(activity.getString(R.string.primary_color_string)));
             TextView toastView = (TextView) toast.getView().findViewById(android.R.id.message);
+            toastView.setTextColor(Color.parseColor(activity.getString(R.string.secondary_color_string)));
             toastView.setGravity(Gravity.CENTER);
             toast.show();
 
         }else{
             Toast toast = Toast.makeText(activity, message, Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.BOTTOM,0,20);
+            toast.getView().setBackgroundColor(Color.parseColor(activity.getString(R.string.primary_color_string)));
             TextView toastView = (TextView) toast.getView().findViewById(android.R.id.message);
             toastView.setTextColor(Color.RED);
             toastView.setGravity(Gravity.CENTER);
@@ -52,5 +60,12 @@ public class Constants {
         if(progressDialog.isShowing()){
             progressDialog.dismiss();
         }
+    }
+
+    public static boolean isConnected(Activity activity){
+        ConnectivityManager connectivityManager = (ConnectivityManager) activity.getSystemService(Activity.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) return true;
+        else return false;
     }
 }

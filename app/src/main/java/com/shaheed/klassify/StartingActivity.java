@@ -1,5 +1,6 @@
 package com.shaheed.klassify;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
@@ -39,14 +40,16 @@ public class StartingActivity extends ActionBarActivity {
     private String[] mMenu  = new String[]{MENU_LOGIN, MENU_SIGNUP};
     private ArrayAdapter adapter;
 
-    private SessionManager sessionManager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_starting);
 
         initiateMenuDrawer();
+
+        if(!Constants.isConnected(this)){
+            Constants.makeToast(this,getString(R.string.network_not_connected),true);
+        }
 
     }
 

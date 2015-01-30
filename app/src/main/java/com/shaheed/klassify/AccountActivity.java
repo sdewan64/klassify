@@ -19,10 +19,19 @@ public class AccountActivity extends ActionBarActivity implements android.suppor
     private TabsPagerAdapter mAdapter;
     private String[] tabs = { "My Ads", "Wish List", "Edit Information" };
 
+    SessionManager sessionManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
+
+        sessionManager = new SessionManager(getApplicationContext());
+
+        if(!Constants.isConnected(this)){
+            Constants.makeToast(this,getString(R.string.network_not_connected),true);
+            return;
+        }
 
         initiateTabsView();
 
@@ -76,7 +85,9 @@ public class AccountActivity extends ActionBarActivity implements android.suppor
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_account_logout) {
+            sessionManager.logoutUser();
+            finish();
             return true;
         }
 

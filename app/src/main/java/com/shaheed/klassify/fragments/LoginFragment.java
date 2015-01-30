@@ -47,6 +47,8 @@ public class LoginFragment extends Fragment{
 
     private Fragment currentFragment;
 
+    private SessionManager sessionManager;
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
@@ -54,7 +56,22 @@ public class LoginFragment extends Fragment{
         addClickListeners();
         progressDialog = new ProgressDialog(getActivity());
         currentFragment = this;
+
+        handleSession();
+
         return view;
+    }
+
+    private void handleSession() {
+        sessionManager = new SessionManager(getActivity().getApplicationContext());
+        if(sessionManager.isUserLoggedIn()){
+            Constants.makeToast(getActivity(),"Login Information Found",false);
+            Intent in = new Intent(getActivity(), AccountActivity.class);
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(in);
+            getActivity().finish();
+        }
     }
 
     private void addClickListeners() {
@@ -82,6 +99,10 @@ public class LoginFragment extends Fragment{
     }
 
     private void login_loginButtonClicked() {
+        if(!Constants.isConnected(getActivity())){
+            Constants.makeToast(getActivity(),getString(R.string.network_not_connected),true);
+            return;
+        }
         if(login_email.getText().toString().equals("") || login_password.getText().toString().equals("")){
             Constants.makeToast(this.getActivity(), "All fields are required!", true);
         }else {

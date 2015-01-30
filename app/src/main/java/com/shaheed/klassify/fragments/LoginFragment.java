@@ -64,7 +64,7 @@ public class LoginFragment extends Fragment{
 
     private void handleSession() {
         sessionManager = new SessionManager(getActivity().getApplicationContext());
-        if(sessionManager.isUserLoggedIn()){
+        if(sessionManager.userLoggedIn()){
             Constants.makeToast(getActivity(),"Login Information Found",false);
             Intent in = new Intent(getActivity(), AccountActivity.class);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -146,6 +146,7 @@ public class LoginFragment extends Fragment{
                         if(reply.equals("done")){
                             isDone = true;
                             Constants.userId = jsonObject.getString("userid");
+                            Constants.userName = jsonObject.getString("username");
                         }else{
                             replyMsg = reply;
                         }

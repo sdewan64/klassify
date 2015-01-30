@@ -111,12 +111,10 @@ public class StartingActivity extends ActionBarActivity {
                     try{
                         JSONObject adObject = adArray.getJSONObject(i);
                         Ads ad = new Ads(adObject.getString("ad_id"),adObject.getString("ad_owner"),adObject.getString("ad_type"),adObject.getString("ad_category"),adObject.getString("ad_sub_category"),adObject.getString("ad_thumb_image"),adObject.getString("ad_price"));
+                        sdHorizontalListView.addNewImageTextItem(ad.getAdThumbImageLink(),VolleyController.getInstance().getImageLoader(),ad.getAdPrice(),ad,onClickListener);
                     }catch (JSONException e){
                         Log.e("JSONERROR", e.getMessage());
                     }
-
-                    //sdHorizontalListView.addNewImageTextItem();
-
                 }
             }
         }, new Response.ErrorListener(){

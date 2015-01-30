@@ -59,12 +59,16 @@ public class SdHorizontalListView {
 
         LinearLayout innerLinearLayout = new LinearLayout(context);
 
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(250,300);
+        layoutParams.setMargins(5,0,5,0);
         innerLinearLayout.setLayoutParams(layoutParams);
         innerLinearLayout.setOrientation(LinearLayout.VERTICAL);
 
         NetworkImageView imageView = new NetworkImageView(context);
         imageView.setImageUrl(imageLocation,imageLoader);
+        imageView.setErrorImageResId(R.drawable.network_error);
+        imageView.setDefaultImageResId(R.drawable.loading);
+
 
         Integer newId = generateNewId();
         imageView.setId(newId);

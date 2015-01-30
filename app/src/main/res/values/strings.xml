@@ -35,6 +35,6 @@
     <string name="network_not_connected">You are not connected to internet!</string>
     <string name="title_activity_new_ad">Post New Advertisement</string>
     <string name="image_description_postnewad">Post New Add Button</string>
-    <string name="menu_text_editorsChoice">Editor's Choice</string>
+    <string name="menu_text_editorsChoice">Editors Choice</string>
 
 </resources>

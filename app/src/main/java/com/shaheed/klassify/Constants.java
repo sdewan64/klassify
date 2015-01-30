@@ -26,7 +26,7 @@ public class Constants {
     public static String URL_REGISTRATION = URL_BASE + "54cb6b8396d6b26f09431f43";
     public static String URL_UPDATE = URL_BASE + "54cb6b8396d6b26f09431f43";
     public static String URL_FETCH = URL_BASE + "54cb86d896d6b2850c431f5d";
-    public static String URL_EDITORS_CHOICE = URL_BASE + "54cbfb2296d6b22117431fc3";
+    public static String URL_EDITORS_CHOICE = URL_BASE + "54cc095896d6b25e18431fce";
 
     public static String userId = "";
     public static String userName = "";

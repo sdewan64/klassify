@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Klassify</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="header_menu">Menu</string>
+    <string name="menu_login">Login</string>
+    <string name="menu_signup">Sign Up</string>
+    <string name="menu_exit">Exit</string>
+    <string name="menu_logout">Logout</string>
+    <string name="menu_edit">Edit</string>
+    <string name="menu_share">Share</string>
+    <string name="title_activity_account">Account</string>
+    <string name="title_activity_account_edit">Edit Account</string>
+    <string name="account_name">Name : </string>
+    <string name="account_email">Email : </string>
+    <string name="account_address">Address : </string>
+    <string name="account_phonenumber">Phone Number : </string>
+    <string name="account_oldpassword">Old Password : </string>
+    <string name="account_newpassword">New Password : </string>
+    <string name="account_confirmpassword">Confirm Password : </string>
+    <string name="network_fetching">Fetching ... </string>
+    <string name="account_oldPassword">Old Password : </string>
+    <string name="account_newPassword">New Password : </string>
+    <string name="account_newConfirmPassword">Confirm New Password : </string>
+    <string name="title_activity_social_sign_up">Social Sign Up</string>
+    <string name="menu_social_signup">Signup with Social Network</string>
+    <string name="facebook_app_id">637137979724925</string>
+
+</resources>

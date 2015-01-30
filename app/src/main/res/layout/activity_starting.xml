@@ -28,10 +28,11 @@
                 android:textStyle="bold"
                 android:textColor="#6E68AF"/>
 
-            <ImageView
+            <ImageButton
                 android:layout_width="fill_parent"
                 android:layout_height="110dp"
-                android:id="@+id/starting_imageview_postad"
+                android:id="@+id/starting_imagebutton_postad"
+                android:contentDescription="@string/image_description_postnewad"
                 android:layout_gravity="center"
                 android:background="@drawable/post_ad"
                 android:layout_marginBottom="50dp"
@@ -44,7 +45,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|top">
             <ImageView
                 android:layout_width="145dp"
@@ -53,6 +54,25 @@
                 android:layout_gravity="center_horizontal|top"
                 android:background="@drawable/klassify_logo"/>
             </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="@string/menu_text_editorsChoice"
+                android:layout_gravity="center"/>
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/starting_horizontalscrollview"
+                android:layout_gravity="start"
+                android:layout_marginBottom="20dp" >
+                </HorizontalScrollView>
+        </LinearLayout>
 
 
     </FrameLayout>

@@ -35,6 +35,69 @@
     <string name="network_not_connected">You are not connected to internet!</string>
     <string name="title_activity_new_ad">Post New Advertisement</string>
     <string name="image_description_postnewad">Post New Add Button</string>
+    <string name="image_description_itemphoto">Item photo add button</string>
     <string name="menu_text_editorsChoice">Editors Choice</string>
+    <string name="title_activity_view_ad">ViewAdActivity</string>
+    <string name="menu_adtitle">Ad Title</string>
+    <string name="menu_description">Description</string>
+    <string name="menu_post">Post</string>
+    <string name="menu_price">Price</string>
+    <string name="menu_myads">My Ads</string>
+    <string name="viewad_textview_adtitle">Ad Tile</string>
+    <string name="viewad_networkimageview_loading">Loding</string>
+    <string name="viewad_textview_price">BDTPrice</string>
+    <string name="viewad_textview_description">Description</string>
+    <string name="viewad_textview_category">Category</string>
+    <string name="viewad_textview_subcategory">SubCategory</string>
+    <string name="viewad_textview_posted">Posted</string>
+    <string name="viewad_type">Ad Type : </string>
+
+    <string name="action_share">Share</string>
+    <string name="action_wishlist">Wish List</string>
+
+    <string name="share_default_message">Shared from Klassify App</string>
+    <string name="share_default_link">http://www.checkboxdevelopers.com</string>
+
+
+
+
+    <string-array name="type">
+        <item>Choose a Type</item>
+        <item>Buying</item>
+        <item>Selling</item>
+        <item>Services</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>Choose a Category</item>
+        <item>Electronics and Computers</item>
+        <item>Real Estate</item>
+        <item>Mobiles and Tablets</item>
+        <item>Vehicles</item>
+        <item>Clothes and Fashion</item>
+        <item>Books</item>
+    </string-array>
+
+    <string-array name="subCategories">
+        <item>Choose a Sub Category</item>
+        <item>Rent</item>
+        <item>Buy Property</item>
+        <item>Mobiles</item>
+        <item>Tablets</item>
+        <item>Laptops</item>
+        <item>Desktops amd Computer Accessories</item>
+        <item>Camera and Accessories</item>
+        <item>Televisions</item>
+        <item>Refrigerators</item>
+        <item>Home Theater</item>
+        <item>Motorcycles</item>
+        <item>Cars</item>
+        <item>Bicycles</item>
+        <item>Novels</item>
+        <item>Educational</item>
+        <item>Men Wear</item>
+        <item>Women Clothing</item>
+        <item>Children Outfit</item>
+    </string-array>
 
 </resources>

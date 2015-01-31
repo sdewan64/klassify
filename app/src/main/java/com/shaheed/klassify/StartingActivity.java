@@ -1,5 +1,7 @@
 package com.shaheed.klassify;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -31,7 +33,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Currency;
 import java.util.HashMap;
+import java.util.Locale;
 
 /**
  * Created by Shaheed on 1/20/2015.
@@ -43,6 +47,8 @@ import java.util.HashMap;
 public class StartingActivity extends ActionBarActivity {
 
     private static final String VOLLEYTAG = "Menu";
+
+    private Activity activity;
 
     private final String MENU_LOGIN = "Login";
     private final String MENU_SIGNUP = "Sign Up";
@@ -70,6 +76,7 @@ public class StartingActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
          setContentView(R.layout.activity_starting);
 
+        activity = this;
         sessionManager = new SessionManager(getApplicationContext());
 
         if(sessionManager.userLoggedIn()){
@@ -99,7 +106,7 @@ public class StartingActivity extends ActionBarActivity {
         onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                itemClicked(v.getId());
             }
         };
         sdHorizontalListView = new SdHorizontalListView(getApplicationContext(), starting_horizontalScrollView, listMap);
@@ -110,8 +117,8 @@ public class StartingActivity extends ActionBarActivity {
                 for(int i=0;i<adArray.length();i++){
                     try{
                         JSONObject adObject = adArray.getJSONObject(i);
-                        Ads ad = new Ads(adObject.getString("ad_id"),adObject.getString("ad_owner"),adObject.getString("ad_type"),adObject.getString("ad_category"),adObject.getString("ad_sub_category"),adObject.getString("ad_thumb_image"),adObject.getString("ad_price"));
-                        sdHorizontalListView.addNewImageTextItem(ad.getAdThumbImageLink(),VolleyController.getInstance().getImageLoader(),ad.getAdPrice(),ad,onClickListener);
+                        Ads ad = new Ads(adObject.getString("ad_id"),adObject.getString("ad_title"),adObject.getString("ad_description"),adObject.getString("ad_owner"),adObject.getString("ad_type"),adObject.getString("ad_category"),adObject.getString("ad_sub_category"),adObject.getString("ad_thumb_image"),adObject.getString("ad_price"));
+                        sdHorizontalListView.addNewImageTextItem(ad.getAdThumbImageLink(),VolleyController.getInstance().getImageLoader(), "BDT "+ad.getAdPrice(),ad,onClickListener);
                     }catch (JSONException e){
                         Log.e("JSONERROR", e.getMessage());
                     }
@@ -127,6 +134,14 @@ public class StartingActivity extends ActionBarActivity {
         VolleyController.getInstance().addNewToRequestQueue(editorsChoiceAdRequest,VOLLEYTAG);
     }
 
+    public void itemClicked(Integer id){
+        Constants.ad = (Ads) listMap.get(id);
+
+        Intent intent = new Intent(activity,ViewAdActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
     @Override
     protected void onStop() {
         super.onStop();
@@ -138,10 +153,19 @@ public class StartingActivity extends ActionBarActivity {
         starting_postNewAdView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StartingActivity.this, NewAdActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+
+                if(!sessionManager.userLoggedIn()){
+                    Constants.makeToast(activity,"You need to register first!", true);
+                    RegistrationFragment menuFragment = new RegistrationFragment();
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.content_frame, menuFragment).commit();
+
+                }else{
+                    Intent intent = new Intent(StartingActivity.this, NewAdActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
             }
         });
     }

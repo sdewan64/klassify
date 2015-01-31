@@ -9,6 +9,8 @@ package com.shaheed.klassify.models;
 public class Ads {
 
     private String adId;
+    private String adTitle;
+    private String adDescription;
     private String adOwner;
     private String adType;
     private String adCategory;
@@ -18,8 +20,10 @@ public class Ads {
 
     public Ads(){}
 
-    public Ads(String adId,String adOwner,String adType,String adCategory,String adSubCategory,String adThumbImageLink,String adPrice){
+    public Ads(String adId,String adTitle,String adDescription,String adOwner,String adType,String adCategory,String adSubCategory,String adThumbImageLink,String adPrice){
         this.adId = adId;
+        this.adTitle = adTitle;
+        this.adDescription = adDescription;
         this.adOwner = adOwner;
         this.adType = adType;
         this.adCategory = adCategory;
@@ -30,6 +34,14 @@ public class Ads {
 
     public void setAdId(String adId){
         this.adId = adId;
+    }
+
+    public void setAdTitle(String adTitle){
+        this.adTitle = adTitle;
+    }
+
+    public void setAdDescription(String adDescription){
+        this.adDescription = adDescription;
     }
 
     public void setAdOwner(String adOwner){
@@ -60,6 +72,14 @@ public class Ads {
 
     public String getAdId(){
         return this.adId;
+    }
+
+    public String getAdTitle(){
+        return this.adTitle;
+    }
+
+    public String getAdDescription(){
+        return this.adDescription;
     }
 
     public String getAdOwner(){

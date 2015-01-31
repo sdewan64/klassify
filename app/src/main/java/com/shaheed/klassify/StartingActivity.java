@@ -27,6 +27,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.shaheed.klassify.fragments.LoginFragment;
 import com.shaheed.klassify.fragments.RegistrationFragment;
+import com.shaheed.klassify.fragments.SubCategoryFragment;
 import com.shaheed.klassify.models.Ads;
 
 import org.json.JSONArray;
@@ -48,17 +49,19 @@ public class StartingActivity extends ActionBarActivity {
 
     private static final String VOLLEYTAG = "Menu";
 
-    private Activity activity;
-
     private final String MENU_LOGIN = "Login";
     private final String MENU_SIGNUP = "Sign Up";
 
+    private final String MENU_CAT1 = "Mobiles and Tablets";
+    private final String MENU_CAT2 = "Electronics and Computer";
+    private final String MENU_CAT3 = "Vehicles";
 
+    private Activity activity;
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
 
-    private String[] mMenu  = new String[]{MENU_LOGIN, MENU_SIGNUP};
+    private String[] mMenu  = new String[]{MENU_LOGIN, MENU_SIGNUP,"Categories",MENU_CAT1,MENU_CAT2,MENU_CAT3};
     private ArrayAdapter adapter;
 
     private SessionManager sessionManager;
@@ -220,6 +223,23 @@ public class StartingActivity extends ActionBarActivity {
                     menuFragment = new LoginFragment();
                 }else if(mMenu[position].equals(MENU_SIGNUP)){
                     menuFragment = new RegistrationFragment();
+                }else if(mMenu[position].equals(MENU_CAT1)){
+                    Bundle bundle = new Bundle();
+                    bundle.putString("category",MENU_CAT1);
+                    menuFragment = new SubCategoryFragment();
+                    menuFragment.setArguments(bundle);
+                }else if(mMenu[position].equals(MENU_CAT2)){
+                    Bundle bundle = new Bundle();
+                    bundle.putString("category",MENU_CAT2);
+                    menuFragment = new SubCategoryFragment();
+                    menuFragment.setArguments(bundle);
+                }else if(mMenu[position].equals(MENU_CAT3)){
+                    Bundle bundle = new Bundle();
+                    bundle.putString("category",MENU_CAT3);
+                    menuFragment = new SubCategoryFragment();
+                    menuFragment.setArguments(bundle);
+                }else if(mMenu[position].equals("Categories")){
+                    return;
                 }
 
                 FragmentManager fragmentManager = getSupportFragmentManager();

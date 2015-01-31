@@ -28,9 +28,10 @@ public class Constants {
     public static String URL_REGISTRATION = URL_BASE + "54cb6b8396d6b26f09431f43";
     public static String URL_UPDATE = URL_BASE + "54cb6b8396d6b26f09431f43";
     public static String URL_FETCH = URL_BASE + "54cb86d896d6b2850c431f5d";
-    public static String URL_EDITORS_CHOICE = URL_BASE + "54cc66b622f5cffa0207e0ed";
+    public static String URL_EDITORS_CHOICE = URL_BASE + "54cc979d22f5cf2e0607e112";
     public static String URL_POST_AD = URL_BASE + "54cb9aed96d6b2c50e431f6b";
     public static String URL_MY_AD = URL_BASE + "54cc87d622f5cf3a0507e108";
+    public static String URL_SEARCH_CATEGORY = URL_BASE + "54cc9a2c22f5cf600607e114";
 
     public static String userId = "";
     public static String userName = "";

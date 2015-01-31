@@ -53,6 +53,8 @@ public class StartingActivity extends ActionBarActivity {
     private final String MENU_LOGIN = "Login";
     private final String MENU_SIGNUP = "Sign Up";
 
+
+
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
 
@@ -117,7 +119,7 @@ public class StartingActivity extends ActionBarActivity {
                 for(int i=0;i<adArray.length();i++){
                     try{
                         JSONObject adObject = adArray.getJSONObject(i);
-                        Ads ad = new Ads(adObject.getString("ad_id"),adObject.getString("ad_title"),adObject.getString("ad_description"),adObject.getString("ad_owner"),adObject.getString("ad_type"),adObject.getString("ad_category"),adObject.getString("ad_sub_category"),adObject.getString("ad_thumb_image"),adObject.getString("ad_price"));
+                        Ads ad = new Ads(adObject.getString("ad_id"),adObject.getString("ad_title"),adObject.getString("ad_description"),adObject.getString("ad_owner"),adObject.getString("ad_type"),adObject.getString("ad_category"),adObject.getString("ad_sub_category"),adObject.getString("ad_thumb_image"),adObject.getString("ad_price"),adObject.getString("ad_phone_number"),adObject.getString("ad_email"));
                         sdHorizontalListView.addNewImageTextItem(ad.getAdThumbImageLink(),VolleyController.getInstance().getImageLoader(), "BDT "+ad.getAdPrice(),ad,onClickListener);
                     }catch (JSONException e){
                         Log.e("JSONERROR", e.getMessage());

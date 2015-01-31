@@ -1,6 +1,7 @@
 package com.shaheed.klassify;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -81,6 +82,22 @@ public class ViewAdActivity extends ActionBarActivity {
                     " at " + viewad_bdtPrice.getText().toString() +
                     " \n "+ Constants.ad.getAdThumbImageLink();
             handleShare(shareMsg);
+            return true;
+        }else if(id == R.id.action_call){
+            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + Constants.ad.getAdPhone()));
+            startActivity(intent);
+            return true;
+        }else if(id == R.id.action_message){
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.putExtra("address",Constants.ad.getAdPhone());
+            intent.setType("vnd.android-dir/mms-sms");
+            startActivity(intent);
+            return true;
+        }else if(id == R.id.action_email){
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.putExtra("address",Constants.ad.getAdEmail());
+            intent.setType("vnd.android-dir/mms-sms");
+            startActivity(intent);
             return true;
         }
 

@@ -17,10 +17,14 @@ public class Ads {
     private String adSubCategory;
     private String adThumbImageLink;
     private String adPrice;
+    private String adPhone;
+    private String adEmail;
+
+    private String adView = "0";
 
     public Ads(){}
 
-    public Ads(String adId,String adTitle,String adDescription,String adOwner,String adType,String adCategory,String adSubCategory,String adThumbImageLink,String adPrice){
+    public Ads(String adId,String adTitle,String adDescription,String adOwner,String adType,String adCategory,String adSubCategory,String adThumbImageLink,String adPrice,String adPhone,String adEmail){
         this.adId = adId;
         this.adTitle = adTitle;
         this.adDescription = adDescription;
@@ -30,6 +34,8 @@ public class Ads {
         this.adSubCategory = adSubCategory;
         this.adThumbImageLink = adThumbImageLink;
         this.adPrice = adPrice;
+        this.adPhone = adPhone;
+        this.adEmail = adEmail;
     }
 
     public void setAdId(String adId){
@@ -68,6 +74,10 @@ public class Ads {
         this.adPrice = adPrice;
     }
 
+    public void setAdView(String adView){
+        this.adView = adView;
+    }
+
 
 
     public String getAdId(){
@@ -104,6 +114,18 @@ public class Ads {
 
     public String getAdPrice(){
         return this.adPrice;
+    }
+
+    public String getAdPhone(){
+        return this.adPhone;
+    }
+
+    public String getAdEmail(){
+        return this.adEmail;
+    }
+
+    public String getAdView(){
+        return this.adView;
     }
 
 }

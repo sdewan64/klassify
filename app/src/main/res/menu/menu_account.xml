@@ -4,5 +4,5 @@
     tools:context="com.shaheed.klassify.AccountActivity">
     <item android:id="@+id/action_account_logout" android:title="@string/menu_logout"
         app:showAsAction="always"
-        android:icon="@drawable/logout"/>
+        android:icon="@drawable/door"/>
 </menu>

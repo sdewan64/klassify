@@ -44,6 +44,9 @@ public class NewAdActivity extends ActionBarActivity{
 
     private EditText newad_adTitle,newad_adDescpription, newad_adPrice;
 
+    private String[] subcategoriesArray;
+    private ArrayAdapter<String> adapter_state;
+
     private Uri currImageURI;
 
     private Activity activity;
@@ -71,10 +74,9 @@ public class NewAdActivity extends ActionBarActivity{
 
         String[] typeArray = getResources().getStringArray(R.array.type);
         String[] categoriesArray = getResources().getStringArray(R.array.categories);
-        String[] subcategoriesArray = getResources().getStringArray(R.array.subCategories);
 
         spinner_type = (Spinner) findViewById(R.id.Type);
-        ArrayAdapter<String> adapter_state = new ArrayAdapter<>(this,
+        adapter_state = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, typeArray);
         adapter_state
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -101,6 +103,31 @@ public class NewAdActivity extends ActionBarActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 spinner_category.setSelection(position);
+                if(spinner_category.getSelectedItem().toString().equals("Electronics and Computers")){
+                    subcategoriesArray = getResources().getStringArray(R.array.ElecAndComAc);
+                    spinner_sub_category.setEnabled(true);
+                    getSubCategory();
+                }else if(spinner_category.getSelectedItem().toString().equals("Real Estate")){
+                    subcategoriesArray = getResources().getStringArray(R.array.RealEstateSubCategory);
+                    spinner_sub_category.setEnabled(true);
+                    getSubCategory();
+                }else if(spinner_category.getSelectedItem().toString().equals("Mobiles and Tablets")){
+                    subcategoriesArray = getResources().getStringArray(R.array.MobTabSubCat);
+                    spinner_sub_category.setEnabled(true);
+                    getSubCategory();
+                }else if(spinner_category.getSelectedItem().toString().equals("Vehicles")){
+                    subcategoriesArray = getResources().getStringArray(R.array.VehiclesSubCat);
+                    spinner_sub_category.setEnabled(true);
+                    getSubCategory();
+                }else if(spinner_category.getSelectedItem().toString().equals("Clothes and Fashion")){
+                    subcategoriesArray = getResources().getStringArray(R.array.ClothingAndFashionSubCat);
+                    spinner_sub_category.setEnabled(true);
+                    getSubCategory();
+                }else if(spinner_category.getSelectedItem().toString().equals("Books")){
+                    subcategoriesArray = getResources().getStringArray(R.array.BooksSubCat);
+                    spinner_sub_category.setEnabled(true);
+                    getSubCategory();
+                }
             }
 
             @Override
@@ -110,7 +137,12 @@ public class NewAdActivity extends ActionBarActivity{
         });
 
         spinner_sub_category = (Spinner) findViewById(R.id.SubCategories);
+        spinner_sub_category.setEnabled(false);
 
+
+    }
+
+    private void getSubCategory() {
         adapter_state = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, subcategoriesArray);
         adapter_state

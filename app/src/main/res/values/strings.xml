@@ -37,7 +37,7 @@
     <string name="image_description_postnewad">Post New Add Button</string>
     <string name="image_description_itemphoto">Item photo add button</string>
     <string name="menu_text_editorsChoice">Editors Choice</string>
-    <string name="title_activity_view_ad">ViewAdActivity</string>
+    <string name="title_activity_view_ad">Ad Detail</string>
     <string name="menu_adtitle">Ad Title</string>
     <string name="menu_description">Description</string>
     <string name="menu_post">Post</string>
@@ -54,18 +54,24 @@
 
     <string name="action_share">Share</string>
     <string name="action_wishlist">Wish List</string>
+    <string name="action_call">Call</string>
+    <string name="action_message">Message</string>
+    <string name="action_email">Email</string>
 
     <string name="share_default_message">Shared from Klassify App</string>
     <string name="share_default_link">http://www.checkboxdevelopers.com</string>
-
-
-
 
     <string-array name="type">
         <item>Choose a Type</item>
         <item>Buying</item>
         <item>Selling</item>
         <item>Services</item>
+    </string-array>
+
+    <string-array name="ServicesCategory">
+        <item>Home Tutor</item>
+        <item>Job</item>
+        <item>Driver</item>
     </string-array>
 
     <string-array name="categories">
@@ -78,23 +84,41 @@
         <item>Books</item>
     </string-array>
 
-    <string-array name="subCategories">
-        <item>Choose a Sub Category</item>
+    <string-array name="RealEstateSubCategory">
+        <item>Choose a SubCategory</item>
         <item>Rent</item>
-        <item>Buy Property</item>
+        <item>Buy Properties</item>
+    </string-array>
+
+    <string-array name="MobTabSubCat">
         <item>Mobiles</item>
         <item>Tablets</item>
+    </string-array>
+
+    <string-array name="ElecAndComAc">
+        <item>Choose a Sub Category</item>
         <item>Laptops</item>
         <item>Desktops amd Computer Accessories</item>
         <item>Camera and Accessories</item>
         <item>Televisions</item>
         <item>Refrigerators</item>
         <item>Home Theater</item>
+    </string-array>
+
+    <string-array name="VehiclesSubCat">
+        <item>Choose a Sub Category</item>
         <item>Motorcycles</item>
         <item>Cars</item>
         <item>Bicycles</item>
-        <item>Novels</item>
+    </string-array>
+
+    <string-array name="BooksSubCat"> <item>Novels</item>
         <item>Educational</item>
+        <item>Choose a SubCategory</item>
+    </string-array>
+
+    <string-array name="ClothingAndFashionSubCat">
+        <item>Choose a Sub Category</item>
         <item>Men Wear</item>
         <item>Women Clothing</item>
         <item>Children Outfit</item>

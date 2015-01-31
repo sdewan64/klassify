@@ -92,8 +92,9 @@ public class MyAdsFragment extends Fragment {
                 for(int i=0;i<adArray.length();i++){
                     try{
                         JSONObject adObject = adArray.getJSONObject(i);
-                        Ads ad = new Ads(adObject.getString("ad_id"),adObject.getString("ad_title"),adObject.getString("ad_description"),adObject.getString("ad_owner"),adObject.getString("ad_type"),adObject.getString("ad_category"),adObject.getString("ad_sub_category"),adObject.getString("ad_thumb_image"),adObject.getString("ad_price"));
-                        sdHorizontalListView.addNewImageTextItem(ad.getAdThumbImageLink(), VolleyController.getInstance().getImageLoader(), "BDT "+ad.getAdPrice(),ad,onClickListener);
+                        Ads ad = new Ads(adObject.getString("ad_id"),adObject.getString("ad_title"),adObject.getString("ad_description"),adObject.getString("ad_owner"),adObject.getString("ad_type"),adObject.getString("ad_category"),adObject.getString("ad_sub_category"),adObject.getString("ad_thumb_image"),adObject.getString("ad_price"),adObject.getString("ad_phone_number"),adObject.getString("ad_email"));
+                        ad.setAdView(adObject.getString("ad_view_count"));
+                        sdHorizontalListView.addNewImageTextItem(ad.getAdThumbImageLink(), VolleyController.getInstance().getImageLoader(), "View "+ad.getAdView(),ad,onClickListener);
                     }catch (JSONException e){
                         Log.e("JSONERROR", e.getMessage());
                     }
